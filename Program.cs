@@ -12,6 +12,29 @@ namespace GenerationWorld
         {
             Random rand = new Random();
 
+            Grass grass = new Grass();
+            Dirt dirt = new Dirt();
+            Decorations deco = new Decorations();
+
+            grass.Draw();
+            Console.SetCursorPosition(20, 11);
+            dirt.Draw();
+            Console.SetCursorPosition(20, 12);
+            dirt.Draw();
+            Console.SetCursorPosition(20, 13);
+            dirt.Draw();
+            Console.SetCursorPosition(20,9);
+            deco.DrawFlowers(rand);
+            deco.DrawStone(rand);
+
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.ReadKey();
+        }
+    }
+    class Grass
+    {
+        public virtual void Draw()
+        {
             Console.SetCursorPosition(20, 10);
             for (int i = 0; i < 50; i++)
             {
@@ -19,54 +42,24 @@ namespace GenerationWorld
                 Console.Write('=');
             }
             Console.WriteLine(" ");
-            Console.SetCursorPosition(20, 11);
-            for (int i = 0; i < 50; i++)
-            {
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("#");
-            }
-            Console.SetCursorPosition(20, 12);
+        }
+    }
+    class Dirt : Grass
+    {
+        public override void Draw()
+        {
             for (int i = 0; i < 50; i++)
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Write("#");
             }
             Console.WriteLine(" ");
-            Console.SetCursorPosition(20, 13);
-            for (int i = 0; i < 50; i++)
-            {
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("#");
-            }
-            Console.SetCursorPosition(20, 12);
-            for (int i = 0; i < 5; i++)
-            {
-                int num = rand.Next(0, 6);
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                switch (num)
-                {
-                    case 1:
-                        Console.SetCursorPosition(24, 12);
-                        Console.Write("%");
-                        break;
-                    case 2:
-                        Console.SetCursorPosition(30, 12);
-                        Console.Write("%");
-                        break;
-                    case 3:
-                        Console.SetCursorPosition(37, 12);
-                        Console.Write("%");
-                        break;
-                    case 4:
-                        Console.SetCursorPosition(45, 12);
-                        Console.Write("%");
-                        break;
-                    case 5:
-                        Console.SetCursorPosition(65, 12);
-                        Console.Write("%");
-                        break;
-                }
-            }
+        }
+    }
+    class Decorations
+    {
+        public void DrawFlowers(Random rand)
+        {
             for (int i = 0; i < 12; i++)
             {
                 int num = rand.Next(0, 12);
@@ -122,6 +115,9 @@ namespace GenerationWorld
                         break;
                 }
             }
+        }
+        public void DrawStone(Random rand)
+        {
             for (int i = 0; i < 7; i++)
             {
                 int num = rand.Next(0, 7);
@@ -154,8 +150,6 @@ namespace GenerationWorld
                         break;
                 }
             }
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.ReadKey();
         }
     }
 }
